@@ -26,7 +26,7 @@ public class Main {
             System.out.println(port.getSystemPortName());
         }
 
-        SerialPort port = ports[0];
+        SerialPort port = ports[3];
 
         if(port.openPort()){
             System.out.println("port opened");
@@ -42,8 +42,8 @@ public class Main {
         try{
             while (data.hasNextLine()){
                 String s = data.nextLine();//assuming data comes like "m,100,200" format
-
-                String[] parts = s.split(",");
+                System.out.println(s);
+                /*String[] parts = s.split(",");
                 String mode = parts[0];
                 tempx = (double)Integer.parseInt(parts[1]);
                 tempy = (double)Integer.parseInt(parts[2]);
@@ -71,7 +71,7 @@ public class Main {
                 else if(mode.equals("r")){
                     robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
                     robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
-                }
+                }*/
             }
         }catch (Exception e){
             System.out.println(e);
