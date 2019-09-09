@@ -1,1 +1,1 @@
-This program handle the received data from bluetooth 
+This program handles the received data from bluetooth 
