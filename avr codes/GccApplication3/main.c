@@ -1,10 +1,3 @@
-/*
- * ATmega16 Interface with MPU-6050
- * http://www.electronicwings.com
- *
- */ 
-
-
 #define F_CPU 8000000UL									/* Define CPU clock Frequency e.g. here its 8MHz */
 #include <avr/io.h>										/* Include AVR std. library file */
 #include <util/delay.h>									/* Include delay header file */
@@ -15,7 +8,15 @@
 #include "I2C_Master_H_file.h"							/* Include I2C Master header file */
 #include "USART_RS232_H_file.h"							/* Include USART header file */
 
-float Acc_x,Acc_y,Acc_z,Temperature,Gyro_x,Gyro_y,Gyro_z;
+#define GYRO_SENSIVITY 131.0
+#define ACCEL_SENSITIVITY 16384.0
+#define OFF "0,\0"
+#define ON "1,\0"
+#define DRAG "2,\0"
+
+float Acc_x, Acc_y, Acc_z, Temperature ,Gyro_x, Gyro_y, Gyro_z;
+float Xa, Ya, Za, Xg, Yg, Zg;
+float Xa_error, Ya_error, Za_error, Xg_error, Yg_error, Zg_error;
 
 void MPU6050_Init()										/* Gyro initialization function */
 {
@@ -37,7 +38,12 @@ void MPU6050_Init()										/* Gyro initialization function */
 
 	I2C_Start_Wait(0xD0);
 	I2C_Write(GYRO_CONFIG);								/* Write to Gyro configuration register */
-	I2C_Write(0x18);									/* Full scale range +/- 2000 degree/C */
+	I2C_Write(0x00);									/* Full scale range +/- 250 degree/C */
+	I2C_Stop();
+	
+	I2C_Start_Wait(0xD0);
+	I2C_Write(ACCEL_CONFIG);
+	I2C_Write(0x00);									/* Accel Full Range = +- 2g */
 	I2C_Stop();
 
 	I2C_Start_Wait(0xD0);
@@ -49,7 +55,7 @@ void MPU6050_Init()										/* Gyro initialization function */
 void MPU_Start_Loc()
 {
 	I2C_Start_Wait(0xD0);								/* I2C start with device write address */
-	I2C_Write(ACCEL_XOUT_H);							/* Write start location address from where to read */ 
+	I2C_Write(ACCEL_XOUT_H);							/* Write start location address from where to read */
 	I2C_Repeated_Start(0xD1);							/* I2C start with device read address */
 }
 
@@ -66,58 +72,113 @@ void Read_RawValue()
 	I2C_Stop();
 }
 
+void Convert_RawValue()
+{
+	// Divide raw value by sensitivity scale factor to get real values
+	Xa = Acc_x/ACCEL_SENSITIVITY;
+	Ya = Acc_y/ACCEL_SENSITIVITY;
+	Za = Acc_z/ACCEL_SENSITIVITY;
+	
+	Xg = Gyro_x/GYRO_SENSIVITY;
+	Yg = Gyro_y/GYRO_SENSIVITY;
+	Zg = Gyro_z/GYRO_SENSIVITY;
+}
+
+void Calculate_Error()
+{
+	int c = 0;
+	while(c != 2000)
+	{
+		Read_RawValue();
+		Convert_RawValue();
+		Xa_error += Xa;
+		Ya_error += Ya;
+		Za_error += (Za - 1);
+		
+		Xg_error += Xg;
+		Yg_error += Yg;
+		Zg_error += Zg;
+		
+		c++;
+	}
+	
+	Xa_error /= c;
+	Ya_error /= c;
+	Za_error /= c;
+	
+	Xg_error /= c;
+	Yg_error /= c;
+	Zg_error /= c;
+}
+
+void Fix_Error()
+{
+	Xa -= Xa_error;
+	Ya -= Ya_error;
+	Za -= Za_error;
+	
+	Xg -= Xg_error;
+	Yg -= Yg_error;
+	Zg -= Zg_error;
+}
+
 int main()
 {
 	char buffer[20], float_[10];
-	float Xa,Ya,Za,t;
-	float Xg=0,Yg=0,Zg=0;
-	I2C_Init();											/* Initialize I2C */
-	MPU6050_Init();										/* Initialize MPU6050 */
-	USART_Init(9600);									/* Initialize USART with 9600 baud rate */
 	
+	I2C_Init();											//Initialize I2C
+	MPU6050_Init();										//Initialize MPU6050
+	USART_Init(9600);									// Initialize USART with 9600 baud rate
+	Calculate_Error();
+	DDRA = 0b00000000;
+	
+	int drag_limit = 3;
+	//char left_state[5] = OFF;
+	int left_drag = 0;
 	while(1)
 	{
+		
+		if(PINA & 0x01)
+		{
+			left_drag++;
+			if(left_drag >= drag_limit)
+			USART_SendString(ON);
+			else USART_SendString(OFF);
+		}
+		else
+		{
+			USART_SendString(OFF);
+			left_drag = 0;
+		}
+		
 		Read_RawValue();
-
-		Xa = Acc_x/16384.0;								/* Divide raw value by sensitivity scale factor to get real values */
-		Ya = Acc_y/16384.0;
-		Za = Acc_z/16384.0;
+		Convert_RawValue();
+		Fix_Error();
 		
-		Xg = Gyro_x/16.4;
-		Yg = Gyro_y/16.4;
-		Zg = Gyro_z/16.4;
+		//t = (Temperature/340.00)+36.53;					// Convert temperature in °/c using formula
 
-		t = (Temperature/340.00)+36.53;					/* Convert temperature in °/c using formula */
-
-
-		//dtostrf( Xa, 3, 2, float_);					/* Take values in buffer to send all parameters over USART */
-		//sprintf(buffer,"%s,",float_);
-		//USART_SendString(buffer);
-
-		//dtostrf( Ya, 3, 2, float_ );
-		//sprintf(buffer,"%s,",float_);
-		//USART_SendString(buffer);
-		
-		//dtostrf( Za, 3, 2, float_ );
-		//sprintf(buffer,"%s,",float_);
-		//USART_SendString(buffer);
-
-		//dtostrf( t, 3, 2, float_ );
-		//sprintf(buffer," T = %s\t",float_);           /* 0xF8 Ascii value of degree '°' on serial */
-		//USART_SendString(buffer);
-
-		dtostrf( Xg, 3, 2, float_ );
+		dtostrf( Xa, 5, 4, float_ );					// Take values in buffer to send all parameters over USART
 		sprintf(buffer,"%s,",float_);
 		USART_SendString(buffer);
 
-		dtostrf( Yg, 3, 2, float_ );
+		dtostrf( Ya, 5, 4, float_ );
 		sprintf(buffer,"%s,",float_);
 		USART_SendString(buffer);
 		
-		dtostrf( Zg, 3, 2, float_ );
+		dtostrf( Za, 5, 4, float_ );
+		sprintf(buffer,"%s,",float_);
+		USART_SendString(buffer);
+
+		dtostrf( Xg, 5, 4, float_ );
+		sprintf(buffer,"%s,",float_);
+		USART_SendString(buffer);
+
+		dtostrf( Yg, 5, 4, float_ );
+		sprintf(buffer,"%s,",float_);
+		USART_SendString(buffer);
+		
+		dtostrf( Zg, 5, 4, float_ );
 		sprintf(buffer,"%s\n",float_);
 		USART_SendString(buffer);
-		//_delay_ms(200);
-		//USART_SendString("\n");
 	}
 }
