@@ -628,55 +628,54 @@ END GROUP
  *(.fini0)
                 0x000019fc                _etext = .
 
-.data           0x00800060       0x10 load address 0x000019fc
+.data           0x00800060        0xe load address 0x000019fc
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  *(.gnu.linkonce.d*)
  *(.rodata)
- .rodata        0x00800060        0x8 main.o
  *(.rodata*)
  .rodata.str1.1
-                0x00800068        0x8 main.o
+                0x00800060        0xe main.o
  *(.gnu.linkonce.r*)
-                0x00800070                . = ALIGN (0x2)
-                0x00800070                _edata = .
-                0x00800070                PROVIDE (__data_end, .)
+                0x0080006e                . = ALIGN (0x2)
+                0x0080006e                _edata = .
+                0x0080006e                PROVIDE (__data_end, .)
 
-.bss            0x00800070       0x4c
-                0x00800070                PROVIDE (__bss_start, .)
+.bss            0x0080006e       0x4c
+                0x0080006e                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  *(COMMON)
- COMMON         0x00800070       0x4c main.o
-                0x00800070                Acc_z
-                0x00800074                Gyro_x
-                0x00800078                Temperature
-                0x0080007c                Xg
-                0x00800080                Acc_y
-                0x00800084                Za_error
-                0x00800088                Gyro_z
-                0x0080008c                Acc_x
-                0x00800090                Zg_error
-                0x00800094                Xa
-                0x00800098                Ya
-                0x0080009c                Yg_error
-                0x008000a0                Xg_error
-                0x008000a4                Za
-                0x008000a8                Xa_error
-                0x008000ac                Zg
-                0x008000b0                Gyro_y
-                0x008000b4                Yg
-                0x008000b8                Ya_error
-                0x008000bc                PROVIDE (__bss_end, .)
+ COMMON         0x0080006e       0x4c main.o
+                0x0080006e                Acc_z
+                0x00800072                Gyro_x
+                0x00800076                Temperature
+                0x0080007a                Xg
+                0x0080007e                Acc_y
+                0x00800082                Za_error
+                0x00800086                Gyro_z
+                0x0080008a                Acc_x
+                0x0080008e                Zg_error
+                0x00800092                Xa
+                0x00800096                Ya
+                0x0080009a                Yg_error
+                0x0080009e                Xg_error
+                0x008000a2                Za
+                0x008000a6                Xa_error
+                0x008000aa                Zg
+                0x008000ae                Gyro_y
+                0x008000b2                Yg
+                0x008000b6                Ya_error
+                0x008000ba                PROVIDE (__bss_end, .)
                 0x000019fc                __data_load_start = LOADADDR (.data)
-                0x00001a0c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001a0a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008000bc        0x0
+.noinit         0x008000ba        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008000bc                _end = .
+                0x008000ba                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -761,19 +760,19 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1082
+.debug_info     0x00000000     0x1080
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_info    0x000004e6      0x1c9 I2C_Master_C_file.o
- .debug_info    0x000006af      0x8ae main.o
- .debug_info    0x00000f5d      0x125 USART_RS232_C_file.o
+ .debug_info    0x000006af      0x8ac main.o
+ .debug_info    0x00000f5b      0x125 USART_RS232_C_file.o
 
-.debug_abbrev   0x00000000      0x805
+.debug_abbrev   0x00000000      0x7f6
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_abbrev  0x000004a3       0xc6 I2C_Master_C_file.o
- .debug_abbrev  0x00000569      0x1c7 main.o
- .debug_abbrev  0x00000730       0xd5 USART_RS232_C_file.o
+ .debug_abbrev  0x00000569      0x1b8 main.o
+ .debug_abbrev  0x00000721       0xd5 USART_RS232_C_file.o
 
 .debug_line     0x00000000      0x940
  *(.debug_line .debug_line.* .debug_line_end)
@@ -788,14 +787,14 @@ END GROUP
  .debug_frame   0x000000a4       0xe8 main.o
  .debug_frame   0x0000018c       0x60 USART_RS232_C_file.o
 
-.debug_str      0x00000000      0x530
+.debug_str      0x00000000      0x523
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_str     0x00000196      0x1e6 I2C_Master_C_file.o
                                 0x21f (size before relaxing)
- .debug_str     0x0000037c      0x177 main.o
-                                0x340 (size before relaxing)
- .debug_str     0x000004f3       0x3d USART_RS232_C_file.o
+ .debug_str     0x0000037c      0x16a main.o
+                                0x333 (size before relaxing)
+ .debug_str     0x000004e6       0x3d USART_RS232_C_file.o
                                 0x1ce (size before relaxing)
 
 .debug_loc      0x00000000      0x53d

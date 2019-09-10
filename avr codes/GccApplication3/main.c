@@ -10,9 +10,6 @@
 
 #define GYRO_SENSIVITY 131.0
 #define ACCEL_SENSITIVITY 16384.0
-#define OFF "0,\0"
-#define ON "1,\0"
-#define DRAG "2,\0"
 
 float Acc_x, Acc_y, Acc_z, Temperature ,Gyro_x, Gyro_y, Gyro_z;
 float Xa, Ya, Za, Xg, Yg, Zg;
@@ -132,23 +129,23 @@ int main()
 	Calculate_Error();
 	DDRA = 0b00000000;
 	
-	int drag_limit = 3;
+	int d_limit = 2;
 	//char left_state[5] = OFF;
-	int left_drag = 0;
+	int d = 0;
 	while(1)
 	{
 		
 		if(PINA & 0x01)
 		{
-			left_drag++;
-			if(left_drag >= drag_limit)
-			USART_SendString(ON);
-			else USART_SendString(OFF);
+			d++;
+			if(d >= d_limit)
+				USART_SendString("1,");
+			else USART_SendString("0,");
 		}
 		else
 		{
-			USART_SendString(OFF);
-			left_drag = 0;
+			USART_SendString("0,");
+			d = 0;
 		}
 		
 		Read_RawValue();
