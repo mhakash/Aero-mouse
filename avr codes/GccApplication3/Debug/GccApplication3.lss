@@ -1204,12 +1204,12 @@ int main()
 	int d_left = 0;
      980:	81 2c       	mov	r8, r1
      982:	91 2c       	mov	r9, r1
-		Ya *= 9.8;
-		Za *= 9.8;
 		
-		//t = (Temperature/340.00)+36.53;					// Convert temperature in °/c using formula
-
-		dtostrf( Xa, 5, 4, float_ );					// Take values in buffer to send all parameters over USART
+		dtostrf( Zg, 5, 4, float_ );
+		sprintf(buffer,"%s\r\n",float_);
+		USART_SendString(buffer);*/
+		
+		dtostrf( Xa, 3, 1, float_ );
      984:	7e 01       	movw	r14, r28
      986:	25 e1       	ldi	r18, 0x15	; 21
      988:	e2 0e       	add	r14, r18
@@ -1242,7 +1242,7 @@ int main()
      9aa:	82 16       	cp	r8, r18
      9ac:	91 04       	cpc	r9, r1
      9ae:	2c f0       	brlt	.+10     	; 0x9ba <main+0x6c>
-			USART_SendString("1,");
+				USART_SendString("1,");
      9b0:	80 e6       	ldi	r24, 0x60	; 96
      9b2:	90 e0       	ldi	r25, 0x00	; 0
      9b4:	0e 94 06 06 	call	0xc0c	; 0xc0c <USART_SendString>
@@ -1266,7 +1266,7 @@ int main()
      9d0:	69 16       	cp	r6, r25
      9d2:	71 04       	cpc	r7, r1
      9d4:	2c f0       	brlt	.+10     	; 0x9e0 <main+0x92>
-			USART_SendString("2,");
+				USART_SendString("2,");
      9d6:	86 e6       	ldi	r24, 0x66	; 102
      9d8:	90 e0       	ldi	r25, 0x00	; 0
      9da:	0e 94 06 06 	call	0xc0c	; 0xc0c <USART_SendString>
@@ -1350,12 +1350,14 @@ int main()
      a86:	80 93 a8 00 	sts	0x00A8, r24	; 0x8000a8 <Za+0x2>
      a8a:	90 93 a9 00 	sts	0x00A9, r25	; 0x8000a9 <Za+0x3>
 		
-		//t = (Temperature/340.00)+36.53;					// Convert temperature in °/c using formula
-
-		dtostrf( Xa, 5, 4, float_ );					// Take values in buffer to send all parameters over USART
+		dtostrf( Zg, 5, 4, float_ );
+		sprintf(buffer,"%s\r\n",float_);
+		USART_SendString(buffer);*/
+		
+		dtostrf( Xa, 3, 1, float_ );
      a8e:	87 01       	movw	r16, r14
-     a90:	24 e0       	ldi	r18, 0x04	; 4
-     a92:	45 e0       	ldi	r20, 0x05	; 5
+     a90:	21 e0       	ldi	r18, 0x01	; 1
+     a92:	43 e0       	ldi	r20, 0x03	; 3
      a94:	c2 01       	movw	r24, r4
      a96:	b1 01       	movw	r22, r2
      a98:	0e 94 11 08 	call	0x1022	; 0x1022 <dtostrf>
@@ -1371,13 +1373,13 @@ int main()
      aac:	c6 01       	movw	r24, r12
      aae:	0e 94 06 06 	call	0xc0c	; 0xc0c <USART_SendString>
 
-		dtostrf( Ya, 5, 4, float_ );
+		dtostrf( Ya, 3, 1, float_ );
      ab2:	60 91 9a 00 	lds	r22, 0x009A	; 0x80009a <Ya>
      ab6:	70 91 9b 00 	lds	r23, 0x009B	; 0x80009b <Ya+0x1>
      aba:	80 91 9c 00 	lds	r24, 0x009C	; 0x80009c <Ya+0x2>
      abe:	90 91 9d 00 	lds	r25, 0x009D	; 0x80009d <Ya+0x3>
-     ac2:	24 e0       	ldi	r18, 0x04	; 4
-     ac4:	45 e0       	ldi	r20, 0x05	; 5
+     ac2:	21 e0       	ldi	r18, 0x01	; 1
+     ac4:	43 e0       	ldi	r20, 0x03	; 3
      ac6:	0e 94 11 08 	call	0x1022	; 0x1022 <dtostrf>
 		sprintf(buffer,"%s,",float_);
      aca:	ff 92       	push	r15
@@ -1391,13 +1393,13 @@ int main()
      ada:	c6 01       	movw	r24, r12
      adc:	0e 94 06 06 	call	0xc0c	; 0xc0c <USART_SendString>
 		
-		dtostrf( Za, 5, 4, float_ );
+		dtostrf( Za, 3, 1, float_ );
      ae0:	60 91 a6 00 	lds	r22, 0x00A6	; 0x8000a6 <Za>
      ae4:	70 91 a7 00 	lds	r23, 0x00A7	; 0x8000a7 <Za+0x1>
      ae8:	80 91 a8 00 	lds	r24, 0x00A8	; 0x8000a8 <Za+0x2>
      aec:	90 91 a9 00 	lds	r25, 0x00A9	; 0x8000a9 <Za+0x3>
-     af0:	24 e0       	ldi	r18, 0x04	; 4
-     af2:	45 e0       	ldi	r20, 0x05	; 5
+     af0:	21 e0       	ldi	r18, 0x01	; 1
+     af2:	43 e0       	ldi	r20, 0x03	; 3
      af4:	0e 94 11 08 	call	0x1022	; 0x1022 <dtostrf>
 		sprintf(buffer,"%s,",float_);
      af8:	ff 92       	push	r15
@@ -1411,13 +1413,13 @@ int main()
      b08:	c6 01       	movw	r24, r12
      b0a:	0e 94 06 06 	call	0xc0c	; 0xc0c <USART_SendString>
 
-		dtostrf( Xg, 5, 4, float_ );
+		dtostrf( Xg, 3, 1, float_ );
      b0e:	60 91 7e 00 	lds	r22, 0x007E	; 0x80007e <Xg>
      b12:	70 91 7f 00 	lds	r23, 0x007F	; 0x80007f <Xg+0x1>
      b16:	80 91 80 00 	lds	r24, 0x0080	; 0x800080 <Xg+0x2>
      b1a:	90 91 81 00 	lds	r25, 0x0081	; 0x800081 <Xg+0x3>
-     b1e:	24 e0       	ldi	r18, 0x04	; 4
-     b20:	45 e0       	ldi	r20, 0x05	; 5
+     b1e:	21 e0       	ldi	r18, 0x01	; 1
+     b20:	43 e0       	ldi	r20, 0x03	; 3
      b22:	0e 94 11 08 	call	0x1022	; 0x1022 <dtostrf>
 		sprintf(buffer,"%s,",float_);
      b26:	ff 92       	push	r15
@@ -1431,13 +1433,13 @@ int main()
      b36:	c6 01       	movw	r24, r12
      b38:	0e 94 06 06 	call	0xc0c	; 0xc0c <USART_SendString>
 
-		dtostrf( Yg, 5, 4, float_ );
+		dtostrf( Yg, 3, 1, float_ );
      b3c:	60 91 b6 00 	lds	r22, 0x00B6	; 0x8000b6 <Yg>
      b40:	70 91 b7 00 	lds	r23, 0x00B7	; 0x8000b7 <Yg+0x1>
      b44:	80 91 b8 00 	lds	r24, 0x00B8	; 0x8000b8 <Yg+0x2>
      b48:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <Yg+0x3>
-     b4c:	24 e0       	ldi	r18, 0x04	; 4
-     b4e:	45 e0       	ldi	r20, 0x05	; 5
+     b4c:	21 e0       	ldi	r18, 0x01	; 1
+     b4e:	43 e0       	ldi	r20, 0x03	; 3
      b50:	0e 94 11 08 	call	0x1022	; 0x1022 <dtostrf>
 		sprintf(buffer,"%s,",float_);
      b54:	ff 92       	push	r15
@@ -1451,13 +1453,13 @@ int main()
      b64:	c6 01       	movw	r24, r12
      b66:	0e 94 06 06 	call	0xc0c	; 0xc0c <USART_SendString>
 		
-		dtostrf( Zg, 5, 4, float_ );
+		dtostrf( Zg, 3, 1, float_ );
      b6a:	60 91 ae 00 	lds	r22, 0x00AE	; 0x8000ae <Zg>
      b6e:	70 91 af 00 	lds	r23, 0x00AF	; 0x8000af <Zg+0x1>
      b72:	80 91 b0 00 	lds	r24, 0x00B0	; 0x8000b0 <Zg+0x2>
      b76:	90 91 b1 00 	lds	r25, 0x00B1	; 0x8000b1 <Zg+0x3>
-     b7a:	24 e0       	ldi	r18, 0x04	; 4
-     b7c:	45 e0       	ldi	r20, 0x05	; 5
+     b7a:	21 e0       	ldi	r18, 0x01	; 1
+     b7c:	43 e0       	ldi	r20, 0x03	; 3
      b7e:	0e 94 11 08 	call	0x1022	; 0x1022 <dtostrf>
 		sprintf(buffer,"%s\r\n",float_);
      b82:	ff 92       	push	r15

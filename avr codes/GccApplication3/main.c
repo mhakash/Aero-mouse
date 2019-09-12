@@ -165,9 +165,8 @@ int main()
 		Ya *= 9.8;
 		Za *= 9.8;
 		
-		//t = (Temperature/340.00)+36.53;					// Convert temperature in °/c using formula
-
-		dtostrf( Xa, 5, 4, float_ );					// Take values in buffer to send all parameters over USART
+		// Take values in buffer to send all parameters over USART
+		/*dtostrf( Xa, 5, 4, float_ );					
 		sprintf(buffer,"%s,",float_);
 		USART_SendString(buffer);
 
@@ -188,6 +187,30 @@ int main()
 		USART_SendString(buffer);
 		
 		dtostrf( Zg, 5, 4, float_ );
+		sprintf(buffer,"%s\r\n",float_);
+		USART_SendString(buffer);*/
+		
+		dtostrf( Xa, 3, 1, float_ );
+		sprintf(buffer,"%s,",float_);
+		USART_SendString(buffer);
+
+		dtostrf( Ya, 3, 1, float_ );
+		sprintf(buffer,"%s,",float_);
+		USART_SendString(buffer);
+		
+		dtostrf( Za, 3, 1, float_ );
+		sprintf(buffer,"%s,",float_);
+		USART_SendString(buffer);
+
+		dtostrf( Xg, 3, 1, float_ );
+		sprintf(buffer,"%s,",float_);
+		USART_SendString(buffer);
+
+		dtostrf( Yg, 3, 1, float_ );
+		sprintf(buffer,"%s,",float_);
+		USART_SendString(buffer);
+		
+		dtostrf( Zg, 3, 1, float_ );
 		sprintf(buffer,"%s\r\n",float_);
 		USART_SendString(buffer);
 	}
