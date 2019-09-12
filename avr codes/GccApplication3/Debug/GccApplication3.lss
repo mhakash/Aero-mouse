@@ -533,8 +533,8 @@ void MPU6050_Init()										/* Gyro initialization function */
 	I2C_Write(ACCEL_CONFIG);
      2c6:	8c e1       	ldi	r24, 0x1C	; 28
      2c8:	0e 94 0b 01 	call	0x216	; 0x216 <I2C_Write>
-	I2C_Write(0x00);									/* Accel Full Range = +- 2g */
-     2cc:	80 e0       	ldi	r24, 0x00	; 0
+	I2C_Write(0b00001000);									/* Accel Full Range = +- 2g */
+     2cc:	88 e0       	ldi	r24, 0x08	; 8
      2ce:	0e 94 0b 01 	call	0x216	; 0x216 <I2C_Write>
 	I2C_Stop();
      2d2:	0e 94 e7 00 	call	0x1ce	; 0x1ce <I2C_Stop>
@@ -716,8 +716,8 @@ void Convert_RawValue()
 	Xa = Acc_x/ACCEL_SENSITIVITY;
      460:	20 e0       	ldi	r18, 0x00	; 0
      462:	30 e0       	ldi	r19, 0x00	; 0
-     464:	40 e8       	ldi	r20, 0x80	; 128
-     466:	58 e3       	ldi	r21, 0x38	; 56
+     464:	40 e0       	ldi	r20, 0x00	; 0
+     466:	59 e3       	ldi	r21, 0x39	; 57
      468:	60 91 8e 00 	lds	r22, 0x008E	; 0x80008e <Acc_x>
      46c:	70 91 8f 00 	lds	r23, 0x008F	; 0x80008f <Acc_x+0x1>
      470:	80 91 90 00 	lds	r24, 0x0090	; 0x800090 <Acc_x+0x2>
@@ -730,8 +730,8 @@ void Convert_RawValue()
 	Ya = Acc_y/ACCEL_SENSITIVITY;
      48c:	20 e0       	ldi	r18, 0x00	; 0
      48e:	30 e0       	ldi	r19, 0x00	; 0
-     490:	40 e8       	ldi	r20, 0x80	; 128
-     492:	58 e3       	ldi	r21, 0x38	; 56
+     490:	40 e0       	ldi	r20, 0x00	; 0
+     492:	59 e3       	ldi	r21, 0x39	; 57
      494:	60 91 82 00 	lds	r22, 0x0082	; 0x800082 <Acc_y>
      498:	70 91 83 00 	lds	r23, 0x0083	; 0x800083 <Acc_y+0x1>
      49c:	80 91 84 00 	lds	r24, 0x0084	; 0x800084 <Acc_y+0x2>
@@ -744,8 +744,8 @@ void Convert_RawValue()
 	Za = Acc_z/ACCEL_SENSITIVITY;
      4b8:	20 e0       	ldi	r18, 0x00	; 0
      4ba:	30 e0       	ldi	r19, 0x00	; 0
-     4bc:	40 e8       	ldi	r20, 0x80	; 128
-     4be:	58 e3       	ldi	r21, 0x38	; 56
+     4bc:	40 e0       	ldi	r20, 0x00	; 0
+     4be:	59 e3       	ldi	r21, 0x39	; 57
      4c0:	60 91 72 00 	lds	r22, 0x0072	; 0x800072 <__data_end>
      4c4:	70 91 73 00 	lds	r23, 0x0073	; 0x800073 <__data_end+0x1>
      4c8:	80 91 74 00 	lds	r24, 0x0074	; 0x800074 <__data_end+0x2>
@@ -1204,10 +1204,10 @@ int main()
 	int d_left = 0;
      980:	81 2c       	mov	r8, r1
      982:	91 2c       	mov	r9, r1
+		Ya *= 9.8;
+		Za *= 9.8;
 		
-		dtostrf( Zg, 5, 4, float_ );
-		sprintf(buffer,"%s\r\n",float_);
-		USART_SendString(buffer);*/
+		// Take values in buffer to send all parameters over USART
 		
 		dtostrf( Xa, 3, 1, float_ );
      984:	7e 01       	movw	r14, r28
@@ -1350,9 +1350,7 @@ int main()
      a86:	80 93 a8 00 	sts	0x00A8, r24	; 0x8000a8 <Za+0x2>
      a8a:	90 93 a9 00 	sts	0x00A9, r25	; 0x8000a9 <Za+0x3>
 		
-		dtostrf( Zg, 5, 4, float_ );
-		sprintf(buffer,"%s\r\n",float_);
-		USART_SendString(buffer);*/
+		// Take values in buffer to send all parameters over USART
 		
 		dtostrf( Xa, 3, 1, float_ );
      a8e:	87 01       	movw	r16, r14

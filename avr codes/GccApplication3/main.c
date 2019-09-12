@@ -9,7 +9,7 @@
 #include "USART_RS232_H_file.h"							/* Include USART header file */
 
 #define GYRO_SENSIVITY 131.0
-#define ACCEL_SENSITIVITY 16384.0
+#define ACCEL_SENSITIVITY 8192.0
 
 float Acc_x, Acc_y, Acc_z, Temperature ,Gyro_x, Gyro_y, Gyro_z;
 float Xa, Ya, Za, Xg, Yg, Zg;
@@ -40,7 +40,7 @@ void MPU6050_Init()										/* Gyro initialization function */
 	
 	I2C_Start_Wait(0xD0);
 	I2C_Write(ACCEL_CONFIG);
-	I2C_Write(0x00);									/* Accel Full Range = +- 2g */
+	I2C_Write(0b00001000);									/* Accel Full Range = +- 2g */
 	I2C_Stop();
 
 	I2C_Start_Wait(0xD0);
@@ -166,29 +166,6 @@ int main()
 		Za *= 9.8;
 		
 		// Take values in buffer to send all parameters over USART
-		/*dtostrf( Xa, 5, 4, float_ );					
-		sprintf(buffer,"%s,",float_);
-		USART_SendString(buffer);
-
-		dtostrf( Ya, 5, 4, float_ );
-		sprintf(buffer,"%s,",float_);
-		USART_SendString(buffer);
-		
-		dtostrf( Za, 5, 4, float_ );
-		sprintf(buffer,"%s,",float_);
-		USART_SendString(buffer);
-
-		dtostrf( Xg, 5, 4, float_ );
-		sprintf(buffer,"%s,",float_);
-		USART_SendString(buffer);
-
-		dtostrf( Yg, 5, 4, float_ );
-		sprintf(buffer,"%s,",float_);
-		USART_SendString(buffer);
-		
-		dtostrf( Zg, 5, 4, float_ );
-		sprintf(buffer,"%s\r\n",float_);
-		USART_SendString(buffer);*/
 		
 		dtostrf( Xa, 3, 1, float_ );
 		sprintf(buffer,"%s,",float_);
