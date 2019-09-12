@@ -125,32 +125,45 @@ int main()
 	
 	I2C_Init();											//Initialize I2C
 	MPU6050_Init();										//Initialize MPU6050
-	USART_Init(9600);									// Initialize USART with 9600 baud rate
+	USART_Init(38400);									//Initialize USART with 38400 baud rate
 	Calculate_Error();
 	DDRA = 0b00000000;
 	
-	int d_limit = 2;
+	int d = 3;
 	//char left_state[5] = OFF;
-	int d = 0;
+	int d_left = 0;
+	int d_right = 0;
 	while(1)
 	{
 		
 		if(PINA & 0x01)
 		{
-			d++;
-			if(d >= d_limit)
+			d_left++;
+			if(d_left >= d)
 				USART_SendString("1,");
+			else USART_SendString("0,");
+		}
+		else if(PINA & 0x02)
+		{
+			d_right++;
+			if(d_right >= d)
+				USART_SendString("2,");
 			else USART_SendString("0,");
 		}
 		else
 		{
 			USART_SendString("0,");
-			d = 0;
+			d_left = 0;
+			d_right = 0;
 		}
 		
 		Read_RawValue();
 		Convert_RawValue();
 		Fix_Error();
+		
+		Xa *= 9.8;
+		Ya *= 9.8;
+		Za *= 9.8;
 		
 		//t = (Temperature/340.00)+36.53;					// Convert temperature in °/c using formula
 
@@ -175,7 +188,7 @@ int main()
 		USART_SendString(buffer);
 		
 		dtostrf( Zg, 5, 4, float_ );
-		sprintf(buffer,"%s\n",float_);
+		sprintf(buffer,"%s\r\n",float_);
 		USART_SendString(buffer);
 	}
 }

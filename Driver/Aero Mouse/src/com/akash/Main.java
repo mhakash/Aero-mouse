@@ -1,6 +1,6 @@
 package com.akash;
 
-import com.fazecast.jSerialComm.*;
+import com.fazecast.jSerialComm.SerialPort;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -9,14 +9,14 @@ import java.util.Scanner;
 public class Main {
     private static double Ax, Ay, Az, Gx, Gy, Gz;
     private static int button;
-    private static boolean rightButtonPressed, leftButtonPressed;
+    private static boolean rightButtonPressed = false, leftButtonPressed = false;
 
     public static void main(String[] args) throws Exception {
         Robot robot = new Robot();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         System.out.println("Height = " + screenSize.height);
         System.out.println("Width = " + screenSize.width);
-        double i = 1, j = 1;
+        double i, j;
         int posx = screenSize.width / 2, posy = screenSize.height / 2;
         double tempx = posx, tempy = posy;
 
@@ -30,9 +30,7 @@ public class Main {
 
         for (SerialPort port : ports) {
             System.out.println(port.getSystemPortName());
-//            if(port1.getPortDescription().equalsIgnoreCase("BthModem0")) {
-//                port = port1;
-//            }
+            System.out.println(port.getDescriptivePortName());
         }
 
         SerialPort port = ports[0];
@@ -69,7 +67,9 @@ public class Main {
                     }
 
                     parseData(s);
-                    double elapsedTime = (System.currentTimeMillis() - beginTime) / 1000.0;
+
+                    double elapsedTime = (System.currentTimeMillis() - beginTime);
+                    //System.out.println(elapsedTime);
                     if (button == 0) {
                         //no button pressed
                         if (leftButtonPressed) {
@@ -77,7 +77,7 @@ public class Main {
                             robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
                         } else if (rightButtonPressed) {
                             rightButtonPressed = false;
-                            robot.mouseRelease(InputEvent.BUTTON2_DOWN_MASK);
+                            robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
                         }
                     } else if (button == 1) {
                         //left button pressed
@@ -89,27 +89,18 @@ public class Main {
                         //right button pressed
                         if (!rightButtonPressed) {
                             rightButtonPressed = true;
-                            robot.mousePress(InputEvent.BUTTON2_DOWN_MASK);
+                            robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
                         }
                     }
 
-                    tempx += (9.8 * Ax - Gz) / 4.0;  //Gz is negative on right side
-                    tempy -= (9.8* Az - 9.8 + Gx) / 4.0 * 1.67; //subtracted gravity from Az
+                    tempx += (Ax - Gz) / 4.0;  //Gz is negative on right side
+                    tempy -= (Az - 9.8 + Gx) / 4.0 * 1.67; //subtracted gravity from Az
                     posx = (int) tempx;
                     posy = (int) tempy;
                     robot.mouseMove(posx, posy);
 
 
-                    /*
-                    double accX = Double.parseDouble(acc[2].trim()) + 0.37;
-                    //System.out.println(" " + accX);
-                    double accY = Double.parseDouble(acc[0].trim()) - 0.75;
-                    System.out.printf("%.3f       %.3f\n", accX, accY);
-                    tempx -= (accX/8);
-                    tempy -= (accY/8);
-                    posx = (int) tempx;
-                    posy = (int) tempy;
-                    robot.mouseMove(posx, posy);*/
+
                 /*String[] parts = s.split(",");
                 String mode = parts[0];
                 tempx = (double)Integer.parseInt(parts[1]);
@@ -130,15 +121,7 @@ public class Main {
                     posy = tempy;
                 }
 
-                else if(mode.equals("l")){
-                    robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-                    robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-                }
-
-                else if(mode.equals("r")){
-                    robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
-                    robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
-                }*/
+                */
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

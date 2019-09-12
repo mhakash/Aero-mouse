@@ -2,22 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f1d243e-9411-4578-a513-1a3564ca84df" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jSerialComm_2_5_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/jSerialComm_2_5_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Aero Mouse/com/akash/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Aero Mouse/com/akash/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/akash/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/akash/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../avr codes/.vs/GccApplication3/v14/.atsuo" beforeDir="false" afterPath="$PROJECT_DIR$/../../avr codes/.vs/GccApplication3/v14/.atsuo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.elf" beforeDir="false" afterPath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.hex" beforeDir="false" afterPath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.hex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.lss" beforeDir="false" afterPath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.lss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.map" beforeDir="false" afterPath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.srec" beforeDir="false" afterPath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/GccApplication3.srec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/main.o" beforeDir="false" afterPath="$PROJECT_DIR$/../../avr codes/GccApplication3/Debug/main.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../avr codes/GccApplication3/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../avr codes/GccApplication3/main.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,6 +11,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="testRunner" value="GRADLE" />
@@ -35,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/akash/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1096">
-              <caret line="124" column="34" lean-forward="true" selection-start-line="124" selection-start-column="34" selection-end-line="124" selection-end-column="34" />
+            <state relative-caret-position="340">
+              <caret line="92" column="25" lean-forward="true" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -64,8 +53,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -103,6 +92,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -147,18 +137,19 @@
       <option name="presentableId" value="Default" />
       <updated>1568106444388</updated>
       <workItem from="1568106447033" duration="1313000" />
-      <workItem from="1568126546977" duration="46000" />
+      <workItem from="1568126546977" duration="652000" />
+      <workItem from="1568267968868" duration="3525000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1359000" />
+    <option name="totallyTimeSpent" value="5490000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18017058" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -167,7 +158,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -195,8 +186,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/akash/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1096">
-          <caret line="124" column="34" lean-forward="true" selection-start-line="124" selection-start-column="34" selection-end-line="124" selection-end-column="34" />
+        <state relative-caret-position="340">
+          <caret line="92" column="25" lean-forward="true" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
         </state>
       </provider>
     </entry>
