@@ -1,12 +1,12 @@
-#define F_CPU 8000000UL									/* Define CPU clock Frequency e.g. here its 8MHz */
-#include <avr/io.h>										/* Include AVR std. library file */
-#include <util/delay.h>									/* Include delay header file */
-#include <inttypes.h>									/* Include integer type header file */
-#include <stdlib.h>										/* Include standard library file */
-#include <stdio.h>										/* Include standard library file */
-#include "MPU6050_res_define.h"							/* Include MPU6050 register define file */
-#include "I2C_Master_H_file.h"							/* Include I2C Master header file */
-#include "USART_RS232_H_file.h"							/* Include USART header file */
+#define F_CPU 8000000UL									// Define CPU clock Frequency e.g. here its 8MHz
+#include <avr/io.h>										// Include AVR std. library file
+#include <util/delay.h>									// Include delay header file
+#include <inttypes.h>									// Include integer type header file
+#include <stdlib.h>										// Include standard library file
+#include <stdio.h>										// Include standard library file
+#include "MPU6050_res_define.h"							// Include MPU6050 register define file
+#include "I2C_Master_H_file.h"							// Include I2C Master header file
+#include "USART_RS232_H_file.h"							// Include USART header file
 
 #define GYRO_SENSIVITY 131.0
 #define ACCEL_SENSITIVITY 8192.0
@@ -15,50 +15,51 @@ float Acc_x, Acc_y, Acc_z, Temperature ,Gyro_x, Gyro_y, Gyro_z;
 float Xa, Ya, Za, Xg, Yg, Zg;
 float Xa_error, Ya_error, Za_error, Xg_error, Yg_error, Zg_error;
 
-void MPU6050_Init()										/* Gyro initialization function */
+void MPU6050_Init()										// Gyro initialization function
 {
-	_delay_ms(150);										/* Power up time >100ms */
-	I2C_Start_Wait(0xD0);								/* Start with device write address */
-	I2C_Write(SMPLRT_DIV);								/* Write to sample rate register */
-	I2C_Write(0x07);									/* 1KHz sample rate */
+	_delay_ms(150);										// Power up time >100ms
+	I2C_Start_Wait(0xD0);								// Start with device write address
+	I2C_Write(SMPLRT_DIV);								// Write to sample rate register
+	I2C_Write(0x07);									// 1KHz sample rate
 	I2C_Stop();
 
 	I2C_Start_Wait(0xD0);
-	I2C_Write(PWR_MGMT_1);								/* Write to power management register */
-	I2C_Write(0x01);									/* X axis gyroscope reference frequency */
+	I2C_Write(PWR_MGMT_1);								// Write to power management register
+	I2C_Write(0x01);									// X axis gyroscope reference frequency
 	I2C_Stop();
 
 	I2C_Start_Wait(0xD0);
-	I2C_Write(CONFIG);									/* Write to Configuration register */
-	I2C_Write(0x00);									/* Fs = 8KHz */
+	I2C_Write(CONFIG);									// Write to Configuration register
+	I2C_Write(0x00);									// Fs = 8KHz */
 	I2C_Stop();
 
 	I2C_Start_Wait(0xD0);
-	I2C_Write(GYRO_CONFIG);								/* Write to Gyro configuration register */
-	I2C_Write(0x00);									/* Full scale range +/- 250 degree/C */
+	I2C_Write(GYRO_CONFIG);								// Write to Gyro configuration register
+	I2C_Write(0x00);									// Full scale range +/- 250 degree/C
 	I2C_Stop();
 	
 	I2C_Start_Wait(0xD0);
 	I2C_Write(ACCEL_CONFIG);
-	I2C_Write(0b00001000);									/* Accel Full Range = +- 2g */
+	I2C_Write(0b00001000);									// Accel Full Range = +- 4g
 	I2C_Stop();
 
 	I2C_Start_Wait(0xD0);
-	I2C_Write(INT_ENABLE);								/* Write to interrupt enable register */
+	I2C_Write(INT_ENABLE);								// Write to interrupt enable register
 	I2C_Write(0x01);
 	I2C_Stop();
 }
 
 void MPU_Start_Loc()
 {
-	I2C_Start_Wait(0xD0);								/* I2C start with device write address */
-	I2C_Write(ACCEL_XOUT_H);							/* Write start location address from where to read */
-	I2C_Repeated_Start(0xD1);							/* I2C start with device read address */
+	I2C_Start_Wait(0xD0);								// I2C start with device write address
+	I2C_Write(ACCEL_XOUT_H);							// Write start location address from where to read
+	I2C_Repeated_Start(0xD1);							// I2C start with device read address
 }
 
 void Read_RawValue()
 {
-	MPU_Start_Loc();									/* Read Gyro values */
+	MPU_Start_Loc();
+	// Reading raw values from gyro
 	Acc_x = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Acc_y = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
 	Acc_z = (((int)I2C_Read_Ack()<<8) | (int)I2C_Read_Ack());
@@ -130,12 +131,11 @@ int main()
 	DDRA = 0b00000000;
 	
 	int d = 3;
-	//char left_state[5] = OFF;
 	int d_left = 0;
 	int d_right = 0;
 	while(1)
 	{
-		
+		// Taking input for mouse click
 		if(PINA & 0x01)
 		{
 			d_left++;
@@ -161,6 +161,7 @@ int main()
 		Convert_RawValue();
 		Fix_Error();
 		
+		// Multiplying by 9.8 to get the unit in Newton
 		Xa *= 9.8;
 		Ya *= 9.8;
 		Za *= 9.8;

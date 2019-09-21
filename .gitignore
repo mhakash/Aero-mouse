@@ -1,0 +1,41 @@
+# Intellij
+Driver/AeroMouse/out/
+
+# User-specific stuff
+Driver/AeroMouse/.idea/workspace.xml
+Driver/AeroMouse/.idea/tasks.xml
+Driver/AeroMouse/.idea/usage.statistics.xml
+Driver/AeroMouse/.idea/dictionaries
+Driver/AeroMouse/.idea/shelf
+
+# Generated files
+Driver/AeroMouse/.idea/**/contentModel.xml
+
+# Sensitive or high-churn files
+Driver/AeroMouse/.idea/**/dataSources/
+Driver/AeroMouse/.idea/**/dataSources.ids
+Driver/AeroMouse/.idea/**/dataSources.local.xml
+Driver/AeroMouse/.idea/**/sqlDataSources.xml
+Driver/AeroMouse/.idea/**/dynamic.xml
+Driver/AeroMouse/.idea/**/uiDesigner.xml
+Driver/AeroMouse/.idea/**/dbnavigator.xml
+
+# Gradle
+Driver/AeroMouse/.idea/**/gradle.xml
+
+
+#Atmel Studio
+#Build Directories
+AVR Code/AeroMouse/AeroMouse/Debug/
+
+#Build Results
+*.o
+*.d
+*.eep
+*.elf
+*.hex
+*.map
+*.srec
+
+#User Specific Files
+*.atsuo
