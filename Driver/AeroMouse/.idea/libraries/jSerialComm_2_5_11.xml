@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jSerialComm-2.5.11">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/com/fazecast/jSerialComm-2.5.1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
