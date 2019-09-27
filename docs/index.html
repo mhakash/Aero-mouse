@@ -14,20 +14,20 @@
                 <li>
                     <a href="#page1">
                         <div class="data-container">
-                        <span class="btn">Page1 </span>
+                        <span class="btn">intro </span>
                         </div>
                     </a>
                 </li>
                 <li><a href="#page2">
                         <div class="data-container">
-                                <span class="btn">Page2 </span>
+                                <span class="btn">equipment </span>
                                 </div>
                 </a></li>
                 <li><a href="#page3"><div class="data-container">
-                        <span class="btn">Page3 </span>
+                        <span class="btn">principles </span>
                         </div></a></li>
                 <li><a href="#page4"><div class="data-container">
-                        <span class="btn">Page4 </span>
+                        <span class="btn"> credits </span>
                         </div></a></li>
             </ul>
         </nav>
@@ -35,39 +35,112 @@
 
     <section id="page1">
         <div>
-            <h3>Page1</h3>
+            <hr>
+            <h3>Introduction</h3>
+            
             <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo quam eos et nobis, non soluta natus! Modi accusantium repellendus voluptate quaerat libero distinctio aliquid perspiciatis aliquam, recusandae, cum repudiandae dolores odit rem illum maiores quisquam voluptates non neque? Eligendi architecto sapiente rem, deleniti soluta possimus accusamus! Facere provident, quis delectus quas dolor velit dignissimos mollitia beatae, aut est fugiat ullam quia necessitatibus, porro aliquam eaque quo odit! Dolor reprehenderit libero placeat quidem nihil suscipit aliquam?
+            In this project we tried to develop a  wireless mouse which we can use by motion control. It works similarly as wireless remotes
+            found in modern television. It has 2 buttons for left and right click and a power button.   
             </p>
         </div>
        
     </section>
     
     <section id="page2">
+        
             <div>
-                    <h3>Page2</h3>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error dolorem architecto suscipit neque at modi non, eaque nemo praesentium, possimus atque, nesciunt laborum aut assumenda? Fugit quaerat aut ipsum, quis ad molestias enim voluptates eos laudantium dolorem ipsa culpa, dicta eius suscipit totam facilis laborum qui sapiente dolores. Voluptatum quaerat quisquam beatae totam tempora. Omnis fugit, blanditiis temporibus eius modi mollitia non illum rem voluptatum. Autem ad recusandae quo aspernatur aliquam obcaecati, eveniet et nulla atque! Possimus deleniti harum quis sunt rerum facere exercitationem sint, corporis pariatur modi tempora debitis alias! Ab minima numquam saepe itaque debitis sapiente dolorum aliquid.
+                    <hr>
+                    <h3>Equipments</h3>
+                    <p><ul style="list-style-type: none">
+                        <li>
+                            <h4>Hardware</h4>
+                            <ul>
+                                <li>Atmega32</li>
+                                <li>Mpu-6050</li>
+                                <li>HC-05 bluetooth module</li>
+                            </ul>
+                        </li>
+                        <li><h4>Software</h4>
+                            <ul>
+                                <li>A driver written in Java</li>
+                                <li>Java</li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                     
                 </div>
     </section>
     
     <section id="page3">
-            <div>
-                    <h3>Page3</h3>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error dolorem architecto suscipit neque at modi non, eaque nemo praesentium, possimus atque, nesciunt laborum aut assumenda? Fugit quaerat aut ipsum, quis ad molestias enim voluptates eos laudantium dolorem ipsa culpa, dicta eius suscipit totam facilis laborum qui sapiente dolores. Voluptatum quaerat quisquam beatae totam tempora. Omnis fugit, blanditiis temporibus eius modi mollitia non illum rem voluptatum. Autem ad recusandae quo aspernatur aliquam obcaecati, eveniet et nulla atque! Possimus deleniti harum quis sunt rerum facere exercitationem sint, corporis pariatur modi tempora debitis alias! Ab minima numquam saepe itaque debitis sapiente dolorum aliquid.
-                </div>
+        <div>
+            <hr>
+            <h3>Principals</h3>
+            <p>
+                The working principles are quite simple. First when we press power on button the whole system gets power. Then the gyroscope 
+                sends raw data to Atmega32 unit. The microprocessor processes the data and send it to pc via bluetooth using serial communication.
+            </p> 
+            <br>
+            <p>
+                In our pc we need to install a driver also written by us. The driver is written in Java. The driver catches the data provided by 
+                the microprocessor from a communication port. After that the program  uses the data to do necessary work for our mouse movements and clicks.
+                Following is the diagram. 
+            </p> 
+            <br>
+            <img src="src/diagram.png " alt="diagram" class="center"><br>
+            <p>watch our demonstration <a href="https://youtu.be/npBDYBHUPVM" target="_blank">here</a> from the link</p>
+        </div>
+        
     </section>
     
     <section id="page4">
-            <div>
-                    <h3>Page4</h3>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Error dolorem architecto suscipit neque at modi non, eaque nemo praesentium, possimus atque, nesciunt laborum aut assumenda? Fugit quaerat aut ipsum, quis ad molestias enim voluptates eos laudantium dolorem ipsa culpa, dicta eius suscipit totam facilis laborum qui sapiente dolores. Voluptatum quaerat quisquam beatae totam tempora. Omnis fugit, blanditiis temporibus eius modi mollitia non illum rem voluptatum. Autem ad recusandae quo aspernatur aliquam obcaecati, eveniet et nulla atque! Possimus deleniti harum quis sunt rerum facere exercitationem sint, corporis pariatur modi tempora debitis alias! Ab minima numquam saepe itaque debitis sapiente dolorum aliquid.
-                </div>
+        <div>
+            <h3>Credits</h3>
+            <h4>Aero Mouse</h4>
+            <br>
+            <p>
+                developed by: 
+                <li>
+                    Mashrur Ahmed Yafi (1605105)
+                </li>
+                <li>
+                    Mehdi Hassan Akash (1605107)
+                </li>
+                <li>
+                    Md Habibul Islam Shafin (1605118)
+                </li>
+            </p>
+            <br>
+
+            <p>
+                    superviser: 
+                    <li>
+                            Tareq Mahmood,
+                            Lecturer
+                            Dept of CSE, BUET
+                    </li>
+                    <li>
+                            Md. Masum Mushfiq,
+                            Lecturer
+                            Dept of CSE, BUET
+                    </li>
+                   
+             </p> <br>
+
+             <p>
+                 all the codes are available at the <a href="https://github.com/mhakash/Aero-mouse" target="_blank">link</a>.
+             </p>
+
+        </div>
     </section>
 
     <span id="topper">
-            <a href="#page4"><div class="data-container">
+            <a href="#header"><div class="data-container">
                     <span class="btn">go top </span>
-                    </div>
+            </div>
     </span>
+    <div id="blank">
+
+    </div>
 </body>
 </html>

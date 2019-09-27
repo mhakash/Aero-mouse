@@ -18,6 +18,9 @@ h3{
     text-align: left;
     margin-bottom: 10px;
 }
+h4{
+  font-size: 1.1em;
+}
 
 
 header{
@@ -44,9 +47,11 @@ header{
     
 }
 
+
+
 section{
     width: 100%;
-    height: 300px;
+   
 }
 
 section div{
@@ -59,9 +64,18 @@ section p{
 #page1 div{
    
 }
-#page2 div{
-    
+#page2 li{
+    font-family: 'Roboto Mono', monospace;
+    list-style-position: inside;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 #page3{
    
 }
@@ -120,8 +134,14 @@ body{
     align-items: center;
   }
   
-#top{
+#topper{
     position: fixed;
-    right:  0;
+    left:  0;
     bottom: 0;
+}
+#topper a{
+  text-decoration: none;
+}
+#blank{
+  height: 100px;;
 }
