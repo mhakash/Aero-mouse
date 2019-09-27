@@ -77,7 +77,8 @@ section p{
   width: 50%;
 }
 
-#page3{
+#page3 li{
+  font-family: 'Roboto Mono', monospace;
    
 }
 #page4{
