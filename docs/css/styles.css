@@ -4,6 +4,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #8adbdb;
+}
+
 body {
   margin: 0px;
   text-align: justify;
@@ -57,6 +61,29 @@ p {
   line-height: 1.5;
 }
 
+.navbar {
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+  background-color: #FFFFFFDF;
+}
+
+.navbar ul {
+  list-style-type: none;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.navbar li {
+  display: inline;
+  padding: 5px;
+}
+
+.navbar a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
 .block-img:hover,
 .pin-img:hover {
   border: solid;
@@ -81,11 +108,11 @@ p {
   text-align: center;
 }
 
-#developers {
+.developers {
   text-align: center;
 }
 
-#developers ul {
+.developers ul {
   list-style-type: none;
   padding-left: 0;
 }
