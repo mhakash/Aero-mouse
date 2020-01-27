@@ -39,6 +39,15 @@ h3 {
   font-family: "Montserrat", sans-serif;
 }
 
+hr {
+  border: dotted;
+  border-bottom: none;
+  border-color: #d3ebeb;
+  border-width: 6px;
+  margin: 100px auto;
+  width: 5%;
+}
+
 li {
   padding-bottom: 15px;
   line-height: 1.5;
