@@ -1,11 +1,11 @@
 a {
-  color: #11999e;
+  color: #3873B2;
   font-family: "Merriweather", serif;
   text-decoration: none;
 }
 
 a:hover {
-  color: #8adbdb;
+  color: #1ba0f8;
 }
 
 body {
@@ -28,25 +28,25 @@ figcaption {
 }
 
 h1 {
-  color: #66bfbf;
+  color: #154d8a;
   font-family: "Montserrat", sans-serif;
   padding-top: 50px;
 }
 
 h2 {
-  color: #66bfbf;
+  color: #3873B2;
   font-family: "Montserrat", sans-serif;
 }
 
 h3 {
-  color: #66bfbf;
+  color: #3873B2;
   font-family: "Montserrat", sans-serif;
 }
 
 hr {
   border: dotted;
   border-bottom: none;
-  border-color: #d3ebeb;
+  border-color: #a6b4db;
   border-width: 6px;
   margin: 100px auto;
   width: 5%;
@@ -119,9 +119,10 @@ p {
 
 .bottom-container {
   width: 100%;
-  background-color: #66BFBF;
+  background-color: #154d8a;
   padding: 5px 0 5px;
   text-align: center;
+  color: whitesmoke;
 }
 
 .copyright {
